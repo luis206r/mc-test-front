@@ -40,5 +40,9 @@ El objetivo principal es implementar un sistema que permita la autenticación de
    git clone <URL_DEL_REPOSITORIO>
    cd <NOMBRE_DEL_REPOSITORIO>
    npm i
+   ```
+2. Ejecutar el backend [backend](https://github.com/luis206r/mc-test-back)
+3. Ejecutar el front
+   ```
    npm start
    ```
