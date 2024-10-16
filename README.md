@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Prueba Técnica Fullstack Monstruo Creativo - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción del Proyecto
+Este proyecto es una aplicación web que gestiona usuarios con diferentes roles y controla el acceso a ciertas rutas en función del tipo de usuario. El front-end está desarrollado utilizando React (Create React App), junto con Redux, Tailwind CSS, Axios y React Router para proporcionar una experiencia de usuario fluida y eficiente.
 
-## Available Scripts
+## Objetivo
+El objetivo principal es implementar un sistema que permita la autenticación de usuarios y la gestión de roles, garantizando que el acceso a las rutas y elementos de la interfaz se controle adecuadamente según el rol del usuario.
 
-In the project directory, you can run:
+## Tecnologías Utilizadas
+- **React**: Librería para construir interfaces de usuario.
+- **Redux**: Para manejar el estado de la aplicación de manera predecible.
+- **Tailwind CSS**: Framework CSS para un diseño moderno y responsive.
+- **Axios**: Para realizar solicitudes HTTP al backend.
+- **React Router**: Para la gestión de rutas y navegación en la aplicación.
 
-### `npm start`
+## Requerimientos del Proyecto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Autenticación de Usuarios**
+   - Implementación de un sistema de registro y login.
+   - Los usuarios deben ser asignados a uno de los siguientes roles: Admin, EditorCatálogo o EditorAmbiente.
+   - Control de acceso a las rutas protegidas basado en el rol del usuario.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. **Roles y Permisos**
+   - **Admin**: Acceso completo a todas las rutas en el front-end.
+   - **EditorCatálogo**: Acceso a rutas de lectura y funcionalidades de creación y edición en el catálogo de tienda (nombre del ítem, precio, etc.).
+   - **EditorAmbiente**: Acceso a rutas de lectura y funciones de creación y edición en registros de consumo de agua por día (día de registro, cantidad en litros, etc.).
 
-### `npm test`
+3. **Implementación de Rutas**
+   - Rutas públicas y protegidas utilizando `react-router-dom`.
+   - Lógica que verifica el rol del usuario antes de permitir el acceso a rutas sensibles.
+   - Elementos de la interfaz (por ejemplo, menús) que se muestran u ocultan según el rol del usuario autenticado.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. **Formulario de Login**
+   - Creación de un formulario de login en la página de inicio para facilitar el acceso de los usuarios.
 
-### `npm run build`
+## Instalación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clona el repositorio:
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd <NOMBRE_DEL_REPOSITORIO>
+   npm i
+   npm start
+   ```
