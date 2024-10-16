@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute'; // Importar ProtectedRoute
+import ProtectedRoute from './components/ProtectedRoute';
 import Login from './components/Login';
 import UnauthorizedPage from './components/UnauthorizedPage';
 import Home from './components/Home';
@@ -11,22 +11,22 @@ import axios from 'axios';
 import { loginSuccess } from './state/authSlice';
 import Users from './components/Users';
 import NavBar from './components/NavBar';
+import "./App.css";
 
-const App = () => {
-
+const MainApp = () => {
   const dispatch = useDispatch();
   const [logged, setLogged] = useState(false);
   const [loading, setLoading] = useState(true);
-  //const navigate = useNavigate();
+  const location = useLocation(); // Ahora se usa correctamente dentro del Router
+
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/users/me", { withCredentials: true })
       .then((res) => {
-        console.log("actualizando home...")
-        console.log(res.data);
-        if (res.data.user == null)
+        console.log("actualizando home...");
+        if (res.data.user == null) {
           throw new Error("No user data found");
-        else {
+        } else {
           dispatch(
             loginSuccess({
               user: res.data.user,
@@ -34,63 +34,60 @@ const App = () => {
             })
           );
           setLogged(true);
-          console.log("usuario logeado")
-          setLoading(false);
+          console.log("usuario logeado");
         }
       })
       .catch((err) => {
-        console.log("usuario no logeado")
+        console.log("usuario no logeado");
         console.error(err);
+      })
+      .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [dispatch]);
 
-  if (loading) return <div>Loading...</div>
-  else return (
-    <Router>
-      {window.location.pathname !== '/login' && <NavBar />}
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div className='app'>
+      {/* Mostrar la Navbar solo si la ruta no es "/login" */}
+      {location.pathname !== '/login' && <NavBar />}
+
       <Routes>
-
-
         <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-        {/* Ruta protegida para el rol de administrador */}
         <Route
           path="/admin"
           element={
-            <ProtectedRoute allowedRoles={['admin']}>
-              <Users />
-              <Consumptions />
-              <Items />
-            </ProtectedRoute>
+            <ProtectedRoute allowedRoles={['admin']} />
           }
         />
 
-        {/* Ruta protegida para usuarios regulares */}
         <Route
           path="/editorCat"
           element={
-            <ProtectedRoute allowedRoles={['editorCat']}>
-              <Users />
-              <Items />
-            </ProtectedRoute>
+            <ProtectedRoute allowedRoles={['editorCat']} />
           }
         />
 
         <Route
           path="/editorAmb"
           element={
-            <ProtectedRoute allowedRoles={['editorAmb']}>
-              <Users />
-              <Consumptions />
-
-            </ProtectedRoute>
+            <ProtectedRoute allowedRoles={['editorAmb']} />
           }
         />
+
         <Route path="/" element={<Home logged={logged} />} />
       </Routes>
+    </div>
+  );
+};
 
+const App = () => {
+  return (
+    <Router>
+      <MainApp />
     </Router>
   );
 };
